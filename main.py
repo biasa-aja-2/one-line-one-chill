@@ -85,6 +85,12 @@ def check_gates(text):
     for word in ("baby monitor", "lullaby", "my voice", "nursery"):
         if word not in lowered:
             failures.append("entry is missing its concrete image: %s" % word)
+    # Revision (parent round): the scare lands on the last two words,
+    # so the line must open at night and end on "sleeps alone".
+    if not stripped.startswith("Last night"):
+        failures.append("entry must open at night: 'Last night ...'")
+    if not stripped.endswith("sleeps alone."):
+        failures.append("entry must land its blow on 'sleeps alone.'")
     return failures
 
 
